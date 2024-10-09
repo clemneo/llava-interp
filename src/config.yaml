@@ -1,0 +1,2 @@
+cache_dir: '/scratch/local/ssd2/clement/models' 
+data_dir: '/scratch/local/ssd2/clement'
