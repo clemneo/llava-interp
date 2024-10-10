@@ -5,7 +5,7 @@ from PIL import Image
 from tqdm import tqdm
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
-src_path = os.path.join(current_dir, '..', '..')
+src_path = os.path.join(current_dir, '..', '..', 'src')
 sys.path.append(src_path)
 
 from src.HookedLVLM import HookedLVLM
