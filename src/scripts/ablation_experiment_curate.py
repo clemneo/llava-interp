@@ -249,6 +249,7 @@ if __name__ == "__main__":
     parser.add_argument('--results_file', type=str, default="results_val.json", help='File to save results')
     parser.add_argument('--mean_tensor', type=str, help='Filepath of the Mean Tensor for ablation')
     parser.add_argument('--zero_ablation', action='store_true', help='Flag to enable zero ablation')
+    parser.add_argument('--clean_questions_file', type=str, required=True, help='JSON file containing clean questions')
 
     args = parser.parse_args()
 
@@ -258,4 +259,4 @@ if __name__ == "__main__":
 
     data_dir = config['data_dir']
 
-    main(args.device, data_dir, args.datatype, args.results_file, args.mean_tensor, args.zero_ablation)
+    main(args.device, data_dir, args.datatype, args.clean_questions_file, args.results_file, args.mean_tensor, args.zero_ablation)

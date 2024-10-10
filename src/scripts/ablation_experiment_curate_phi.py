@@ -5,6 +5,7 @@ import torch
 from tqdm import tqdm
 from torch.nn import functional as F
 from PIL import Image
+import yaml
 
 import sys, os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
@@ -228,4 +229,10 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
-    main(args.device, args.datatype, args.results_file, args.clean_questions_file)
+    config_file = os.path.join(os.path.dirname(__file__), '..', 'config.yaml')
+    with open(config_file, 'r') as f:
+        config = yaml.safe_load(f)
+
+    data_dir = config['data_dir']
+
+    main(args.device, data_dir, args.datatype, args.clean_questions_file, args.results_file, args.mean_tensor, args.zero_ablation)

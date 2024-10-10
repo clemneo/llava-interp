@@ -189,8 +189,6 @@ def main(device, datatype, results_file, clean_questions_file):
                 "to": list(range(start_end_indices[0][1]-24, start_end_indices[0][1])),
                 "layers": mid_late_layers
             },
-        }
-        experiments_old = {
             "ALL_MINUS_PATCH_EARLY_LAYERS": {
                 "from": all_minus_patch_plus_one,
                 "to": [num_tokens-1],
@@ -221,8 +219,6 @@ def main(device, datatype, results_file, clean_questions_file):
                 "to": [num_tokens-1],
                 "layers": all_layers,
             },
-        # }
-        # experiments_old = {
             "PATCH_TO_LAST_TOK_EARLY_MID_LAYERS": {
                 "from": patch_indices,
                 "to": [num_tokens - 1],
