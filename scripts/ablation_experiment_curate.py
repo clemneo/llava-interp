@@ -8,7 +8,7 @@ from PIL import Image
 import yaml
 
 import sys, os
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'src')))
 from HookedLVLM import HookedLVLM
 from ImageDatasets import COCOImageDataset
 from utils import correct_annotations_for_crop, get_object_patch_indices, get_register_indices, get_random_indices

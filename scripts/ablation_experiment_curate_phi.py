@@ -8,7 +8,7 @@ from PIL import Image
 import yaml
 
 import sys, os
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'src')))
 from HookedLVLM import HookedLVLM
 from ImageDatasets import COCOImageDataset
 from utils import correct_annotations_for_crop, get_object_patch_indices, get_register_indices, get_random_indices
@@ -224,8 +224,10 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Script to run comprehensive ablation experiments on clean dataset with Phi model.")
     parser.add_argument('--device', type=str, default="cuda:0", help='Device to use (e.g., cuda:0, cpu)')
     parser.add_argument('--datatype', type=str, default='val2017', help='Data type for COCO dataset')
-    parser.add_argument('--results_file', type=str, required=True, help='File to save results')
     parser.add_argument('--clean_questions_file', type=str, required=True, help='JSON file containing clean questions')
+    parser.add_argument('--results_file', type=str, required=True, help='File to save results')
+    parser.add_argument('--mean_tensor', type=str, help='Filepath of the Mean Tensor for ablation')
+    parser.add_argument('--zero_ablation', action='store_true', help='Flag to enable zero ablation')
 
     args = parser.parse_args()
 

@@ -9,45 +9,25 @@ from PIL import Image
 from typing import Callable, Dict, List, Tuple
 import itertools
 import sys, os
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'src')))
 from HookedLVLM import HookedLVLM
 from ImageDatasets import COCOImageDataset
 from utils import correct_annotations_for_crop, get_object_patch_indices
 from InputsEmbeds import InputsEmbeds
 
-# def format_and_compare_answers(model, prompt, answer, class_name):
-#     generated_answer = answer[len(prompt.replace("<image>", ""))+1:].strip().lower()
-#     # Tokenize the class name and get the first token
-#     first_token = model.processor.tokenizer.tokenize(class_name.lower())[0].strip()
-#     # Remove leading non-alphabetic characters
-#     first_token = first_token.lstrip('Ġ▁')
-#     # Check if the answer starts with the class name token
-#     return first_token.lower().startswith(generated_answer.lower())
 
 def format_and_compare_answers(model, prompt, answer, class_name):
-    # print(f"Input prompt: {prompt}")
-    # print(f"Input answer: {answer}")
-    # print(f"Input class_name: {class_name}")
-
-    # generated_answer = answer[len(prompt.replace("<image>", ""))+1:].strip().lower()
     generated_answer = answer.strip().lower()
-    # print(f"Generated answer: {generated_answer}")
 
     # Tokenize the class name and get the first token
     tokens = model.processor.tokenizer.tokenize(class_name.lower())
-    # print(f"Tokenized class name: {tokens}")
-    
     first_token = tokens[0].strip()
-    # print(f"First token: {first_token}")
 
     # Remove leading non-alphabetic characters
     first_token = first_token.lstrip('Ġ▁')
-    # print(f"First token after removing leading characters: {first_token}")
 
     # Check if the answer starts with the class name token
     result = first_token.lower().startswith(generated_answer.lower())
-    # print(f"Comparison result: {result}")
-    # print(f"Checking if '{generated_answer}' starts with '{first_token}'")
 
     return result
 

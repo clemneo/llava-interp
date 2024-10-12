@@ -8,7 +8,7 @@ from PIL import Image
 from tqdm import tqdm
 import itertools
 import sys, os
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'src')))
 from HookedLVLM import HookedLVLM
 from InputsEmbeds import InputsEmbeds
 from ImageDatasets import COCOImageDataset
