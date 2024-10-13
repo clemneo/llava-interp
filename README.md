@@ -2,7 +2,30 @@
 This repository contains the code and resources for the paper [Towards Interpreting Visual Information Processing in Vision-Language Models](https://arxiv.org/abs/2410.07149).
 
 ## Installation & Data Setup
-Coming soon!
+
+1. Clone the repository:
+    ```bash
+    git clone https://github.com/clemneo/llava-interp
+    cd llava-interp
+    ```
+
+2. Install required Python packages:
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+3. Download and unzip the COCO dataset images (2017):
+    ```bash
+    wget -P data/ http://images.cocodataset.org/zips/train2017.zip
+    unzip data/train2017.zip -d data/
+    ```
+    > Note: The ZIP file is 19 GB, and the unzipped content is also 19 GB. Make sure you have at least 38 GB of free space available.
+
+4. Download and unzip the annotations:
+    ```bash
+    wget -P data/ http://images.cocodataset.org/annotations/annotations_trainval2017.zip
+    unzip data/annotations_trainval2017.zip -d data/
+    ```
 
 ## Usage
 ### 1. Logit Lens

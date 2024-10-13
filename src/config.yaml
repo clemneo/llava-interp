@@ -1,2 +1,2 @@
-cache_dir: '/scratch/local/ssd2/clement/models' 
-data_dir: '/scratch/local/ssd2/clement'
+cache_dir: # Here if you need to put the models in a separate dir
+data_dir: # Here if you need to put the data in a separate_dir

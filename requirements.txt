@@ -1,0 +1,13 @@
+accelerate==1.0.1
+bitsandbytes==0.44.1
+ipython==8.28.0
+matplotlib==3.9.2
+matplotlib-inline==0.1.7
+numpy==1.26.1
+pillow==10.4.0
+pycocotools==2.0.8
+PyYAML==6.0.2
+requests==2.32.3
+torch==2.1.1+cu121
+tqdm==4.66.5
+transformers==4.45.2

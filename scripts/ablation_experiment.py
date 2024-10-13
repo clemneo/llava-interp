@@ -5,15 +5,16 @@ import json
 from tqdm import tqdm
 import time
 import yaml
-import sys, os
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'src')))
+import sys
+import os
+file_dir = os.path.dirname(__file__)
+sys.path.append(os.path.abspath(os.path.join(file_dir, '..', 'src')))
 from HookedLVLM import HookedLVLM
 from InputsEmbeds import InputsEmbeds
 from ImageDatasets import COCOImageDataset
 from utils import correct_annotations_for_crop, find_overlapping_patches, get_register_indices, get_object_patch_indices, replace_image_regions_with_patches, get_random_indices
 
    
-
 def integrated_gradients(model, image, prompt, image_mean_tensor, steps=50):
     # Get the input embeddings for the actual input
     with torch.no_grad():
@@ -151,7 +152,7 @@ def main(device, data_dir, data_type, results_file, mean_tensor_loc, zero_ablati
     ds = COCOImageDataset(data_dir=data_dir, data_type=data_type, ann_file=ann_file, filter_fn=filter_fn)
 
     # Load Model
-    model = HookedLVLM(device=device, quantize=True, quantize_type="fp16")
+    model = HookedLVLM(device=device, quantize=True, quantize_type="4bit")
     model.model.eval()
     image_mean_tensor = torch.load(mean_tensor_loc)
 
@@ -292,19 +293,24 @@ def main(device, data_dir, data_type, results_file, mean_tensor_loc, zero_ablati
             json.dump(results, f)
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Script to process images and annotations.")
-    parser.add_argument('--device', type=str, default="cuda:0", help='Device to use (e.g., cuda:0, cpu)')
-    parser.add_argument('--datatype', type=str, default='val2017', help='Data type for COCO dataset')
-    parser.add_argument('--results_file', type=str, default="results_val.json", help='File to save results')
+    parser = argparse.ArgumentParser(description="Ablation Experiment for LLaVA 1.5 for generative and polling settings.")
+    parser.add_argument('--device', type=str, default="cuda:0", help='Device to use (e.g. cuda:0, cpu)')
+    parser.add_argument('--datatype', type=str, help='Data type for COCO dataset (e.g. train2017, val2017)')
+    parser.add_argument('--results_file', type=str, help='Filepath/name to save results to')
     parser.add_argument('--mean_tensor', type=str, help='Filepath of the Mean Tensor for ablation')
     parser.add_argument('--zero_ablation', action='store_true', help='Flag to enable zero ablation')
 
     args = parser.parse_args()
 
-    config_file = os.path.join(os.path.dirname(__file__), '..', 'config.yaml')
+    config_file = os.path.join(file_dir, '..', 'src', 'config.yaml')
     with open(config_file, 'r') as f:
         config = yaml.safe_load(f)
 
     data_dir = config['data_dir']
+    
+    if data_dir is None:
+        data_dir = os.path.join(file_dir, '..', 'data')
+        
+    mean_tensor = os.path.join(data_dir, 'test_acts_full_precision_mean_vector.pt') if args.mean_tensor is None else args.mean_tensor
 
-    main(args.device, data_dir, args.datatype, args.results_file, args.mean_tensor, args.zero_ablation)
+    main(args.device, data_dir, args.datatype, args.results_file, mean_tensor, args.zero_ablation)

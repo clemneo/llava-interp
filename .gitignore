@@ -1,0 +1,8 @@
+data/train2017/
+data/val2017/
+data/annotations/
+**/.ipynb_checkpoints/
+**/__pycache__/
+*.zip
+venv
+models

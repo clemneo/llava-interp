@@ -5,13 +5,16 @@ import torch
 from PIL import Image
 from contextlib import contextmanager
 from typing import Callable, Union, Dict, Any
-
+import os
 import yaml
-config_file = os.path.join(os.path.dirname(__file__), '..', 'config.yaml')
+file_path = os.path.dirname(__file__)
+config_file = os.path.join(file_path, 'config.yaml')
 with open(config_file, 'r') as f:
     config = yaml.safe_load(f)
 
 model_cache_dir = config['cache_dir']
+if model_cache_dir is None:
+    model_cache_dir = os.path.join(file_path, '..', 'models')
 
 
 @contextmanager

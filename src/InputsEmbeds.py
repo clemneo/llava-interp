@@ -19,7 +19,7 @@ class InputsEmbeds:
             self.img_token_id = 32000 # Token id for llava
         else:
             self.img_token_id = 32000
-            print(f"WARNING: SOMETHING HAPPENED {model_id}")
+            print(f"WARNING: model_id provided '{model_id}' not in list, defaulting to LLaVA 1.5")
         self.img_token_count = 576 # Number of image tokens, 24x24
 
     def get_img_and_text_embed(self):
