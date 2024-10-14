@@ -1,13 +1,27 @@
-# LLaVA interpretability
-This repository contains the code and resources for the paper [Towards Interpreting Visual Information Processing in Vision-Language Models](https://arxiv.org/abs/2410.07149).
+# LLaVA Interpretability
+
+This repository provides code and resources for our paper, [Towards Interpreting Visual Information Processing in Vision-Language Models](https://arxiv.org/abs/2410.07149). Our work explores techniques like logit lens, token ablation, and attention blocking to better understand how vision-language models process visual data.
+
+## Table of Contents
+- [Installation & Data Setup](#installation--data-setup)
+- [Usage](#usage)
+  - [Logit Lens](#1-logit-lens)
+  - [Token Ablation Experiments](#2-token-ablation-experiments)
+  - [Attention Blocking Experiments](#3-attention-blocking-experiments)
+- [Citation](#citation)
+- [Contact](#contact)
 
 ## Installation & Data Setup
 
-1. Clone the repository:
-    ```bash
-    git clone https://github.com/clemneo/llava-interp
-    cd llava-interp
-    ```
+### Prerequisites
+- Ensure you have Python 3.8+ and `pip` installed.
+
+### Steps
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/clemneo/llava-interp
+   cd llava-interp
+
 
 2. Install required Python packages:
     ```bash
