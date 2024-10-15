@@ -67,6 +67,7 @@ The mean vector used in the paper for LLaVA 1.5 and LLaVA-Phi can be found in `d
 * `scripts/attention_experiment_curate.py` Run attention blocking experiments on LLaVA 1.5
 
 ## Citation
+To cite our work, please use the following BibTeX entry:
 ```
 @misc{neo2024interpretingvisualinformationprocessing,
       title={Towards Interpreting Visual Information Processing in Vision-Language Models}, 
